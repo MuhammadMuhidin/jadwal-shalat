@@ -3,16 +3,17 @@ name: Jadwal Shalat
 on:
   schedule:
   - cron: "*/10 * * * *"
+  workflow_dispatch:
 
 jobs:
   run-script:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: action/checkout@v3
+    - uses: actions/checkout@v3
     
     - name: setup python
-      uses: action/checkout@v4
+      uses: actions/checkout@v4
       with:
         python-version: '3.10'
 
