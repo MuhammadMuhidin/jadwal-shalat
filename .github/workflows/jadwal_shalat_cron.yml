@@ -1,7 +1,7 @@
 name: Jadwal Shalat
 on:
   schedule:
-  - cron: '40 9 * * *'
+  - cron: '45 9 * * *'
 
 jobs:
   run-script:
