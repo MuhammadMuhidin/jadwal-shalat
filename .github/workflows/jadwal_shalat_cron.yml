@@ -1,14 +1,12 @@
 name: Jadwal Shalat
 on:
   schedule:
-  - cron: '00 20 * * *' #trigger on schedule
-  - cron: '00 13 * * *' #trigger on schedule
-  workflow_dispatch: #trigger manual
+  - cron: '05 12 * * *'
 
 jobs:
   run-push2db-send2tele:
-    if: github.event.schedule == '00 13 * * *'
     runs-on: ubuntu-latest
+    
     steps:
     - uses: actions/checkout@v3
     
