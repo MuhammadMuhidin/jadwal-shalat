@@ -1,13 +1,14 @@
 name: Jadwal Shalat
 on:
   schedule:
-  - cron: '50 12 * * *' #trigger on schedule
+  - cron: '00 20 * * *' #trigger on schedule
+  - cron: '00 13 * * *' #trigger on schedule
   workflow_dispatch: #trigger manual
 
 jobs:
-  run-script:
+  run-push2db-send2tele:
+    if: github.event.schedule == '00 13 * * *'
     runs-on: ubuntu-latest
-
     steps:
     - uses: actions/checkout@v3
     
@@ -23,5 +24,5 @@ jobs:
       env:
         NEONDB_URI: 'postgresql://muhidin_owner:npg_X3en6QuhxJDi@ep-jolly-cake-a1cwqxx2-pooler.ap-southeast-1.aws.neon.tech/muhidin?sslmode=require'
         TELEGRAM_URI: 'http://muhammadmuhidin.pythonanywhere.com/send2tele'
-      run: python main.py
+      run: python push2db-send2tele.py
     
