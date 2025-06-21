@@ -1,10 +1,10 @@
-import psycopg2, requests, pytz
+import os, psycopg2, requests, pytz
 from datetime import datetime
 
 class JadwalShalat:
     def __init__(self):
-        self.db = 'postgresql://muhidin_owner:npg_X3en6QuhxJDi@ep-jolly-cake-a1cwqxx2-pooler.ap-southeast-1.aws.neon.tech/muhidin?sslmode=require'
-        self.uri_telegram = 'http://muhammadmuhidin.pythonanywhere.com/send2tele'
+        self.db = os.getenv('NEONDB_URI')
+        self.uri_telegram = os.getenv('TELEGRAM_URI')
     
     def fetch_and_store(self):
         tz = pytz.timezone('Asia/Jakarta')
