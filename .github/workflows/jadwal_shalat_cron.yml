@@ -1,7 +1,8 @@
 name: Jadwal Shalat
 on:
   schedule:
-  - cron: '10 12 * * *'
+  - cron: '30 12 * * *' #trigger on schedule
+  workflow_dispatch: #trigger manual
 
 jobs:
   run-script:
