@@ -1,7 +1,7 @@
 name: Jadwal Shalat
 on:
   schedule:
-  - cron: '50 13 * * *'
+    - cron: '50 13 * * *'
 
 jobs:
   run-push2db-send2tele:
