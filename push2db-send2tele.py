@@ -49,7 +49,7 @@ class JadwalShalat:
         try:
             conn = psycopg2.connect(self.db)
             cursor = conn.cursor()
-            cursor.execute("SELECT * FROM jadwal_shalat ORDER BY tanggal DESC LIMIT 1")
+            cursor.execute("SELECT * FROM jadwal_shalat ORDER BY tanggal ASC LIMIT 1")
             jadwal = cursor.fetchone()
             cursor.close()
             conn.close()
