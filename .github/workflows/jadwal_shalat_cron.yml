@@ -19,5 +19,8 @@ jobs:
       run: pip install psycopg2-binary==2.9.10 pytz==2025.2 requests==2.32.4
 
     - name: jalankan script main.py
+      env:
+        NEONDB_URI: ${{ secrets.NEONDB_URI }}
+        TELEGRAM_URI: ${{ secrets.TELEGRAM_URI }}
       run: python main.py
     
