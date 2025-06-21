@@ -7,6 +7,9 @@ on:
 jobs:
   run-script:
     runs-on: ubuntu-latest
+    env:
+      NEONDB_URI: ${{ secrets.NEONDB_URI }}
+      TELEGRAM_URI: ${{ secrets.TELEGRAM_URI }}
 
     steps:
     - uses: actions/checkout@v3
@@ -20,8 +23,5 @@ jobs:
       run: pip install psycopg2-binary==2.9.10 pytz==2025.2 requests==2.32.4
 
     - name: jalankan script main.py
-      env:
-        NEONDB_URI: ${{ secrets.NEONDB_URI }}
-        TELEGRAM_URI: 'http://muhammadmuhidin.pythonanywhere.com/send2tele'
       run: python main.py
     
