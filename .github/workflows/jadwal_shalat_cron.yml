@@ -2,7 +2,7 @@ name: Jadwal Shalat
 
 on:
   schedule:
-  - cron: "30 9 * * *"
+  - cron: "33 9 * * *"
   workflow_dispatch:
 
 jobs:
