@@ -27,6 +27,6 @@ jobs:
       env:
         NEONDB_URI: 'postgresql://muhidin_owner:npg_X3en6QuhxJDi@ep-jolly-cake-a1cwqxx2-pooler.ap-southeast-1.aws.neon.tech/muhidin?sslmode=require'
         TELEGRAM_URI: 'http://muhammadmuhidin.pythonanywhere.com/send2tele'
-      run:|
+      run: |
         python push2db-send2tele.py
         python push2db-traffic.py
