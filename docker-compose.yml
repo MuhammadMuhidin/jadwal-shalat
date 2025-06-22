@@ -2,7 +2,7 @@ services:
   datagen:
     image: materialize/datagen
     environment:
-      POSTGRES_URL: 
+      POSTGRES_URL: ${POSTGRES_URL}
     entrypoint: >
       datagen -s /app/schemas/ingest-traffic-data.sql -n 1000 -f postgres -w 100
     volumes:
