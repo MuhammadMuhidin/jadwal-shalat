@@ -1,9 +1,12 @@
 services:
   datagen:
     image: materialize/datagen
-    environment:
-      DATABASE_URL: postgres://${NEON_USERNAME}:${NEON_PASSWORD}@${NEON_HOST}:5432/${NEON_DATABASE}?sslmode=require
     entrypoint: >
-      datagen -s /app/schemas/ingest-traffic-data.sql -n 1000 -f postgres -w 100
+      datagen 
+      -s /app/schemas/ingest-traffic-data.sql 
+      -n 1000 
+      -f postgres 
+      -w 100 
+      --connection-url postgres://${NEON_USERNAME}:${NEON_PASSWORD}@${NEON_HOST}:5432/${NEON_DATABASE}?sslmode=require
     volumes:
       - ./ingest-traffic-data.sql:/app/schemas/ingest-traffic-data.sql
