@@ -9,7 +9,7 @@ on:
 
 
 jobs:
-  push2db-send2tele:
+  run-scripts:
     runs-on: ubuntu-latest
     
     steps:
@@ -23,13 +23,10 @@ jobs:
     - name: Install dependencies
       run: pip install psycopg2-binary==2.9.10 pytz==2025.2 requests==2.32.4 Faker==37.4.0
 
-    - name: Run push2db-send2tele.py
+    - name: Run both scripts
       env:
         NEONDB_URI: 'postgresql://muhidin_owner:npg_X3en6QuhxJDi@ep-jolly-cake-a1cwqxx2-pooler.ap-southeast-1.aws.neon.tech/muhidin?sslmode=require'
         TELEGRAM_URI: 'http://muhammadmuhidin.pythonanywhere.com/send2tele'
-      run: python push2db-send2tele.py
-    
-    - name: Run push2db-traffic.py
-      env:
-        NEONDB_URI: 'postgresql://muhidin_owner:npg_X3en6QuhxJDi@ep-jolly-cake-a1cwqxx2-pooler.ap-southeast-1.aws.neon.tech/muhidin?sslmode=require'
-      run: python push2db-traffic.py
+      run:|
+        python push2db-send2tele.py
+        python push2db-traffic.py
