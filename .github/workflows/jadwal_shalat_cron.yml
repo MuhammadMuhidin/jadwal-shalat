@@ -44,7 +44,7 @@ jobs:
         NEON_USERNAME: 'muhidin_owner'
         NEON_PASSWORD: 'npg_X3en6QuhxJDi'
         NEON_DATABASE: 'muhidin'
-      run: docker compose -f docker-compose.yml up --build 
+      run: docker compose -f docker-compose.yml up --force-recreate --build 
 
     - name: Docker Compose Down
       run: docker compose -f docker-compose.yml down
