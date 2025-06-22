@@ -1,37 +1,40 @@
 import os, random, psycopg2
 from faker import Faker
 
-
-class FakerDataGenerator:
-    def __init__(self, db_uri, num_records):
-        self.db_uri = db_uri
-        self.num_records = num_records
+class TrafficDataGenerator:
+    def __init__(self):
+        self.db = os.getenv('NEONDB_URI')
+        self.num_records = random.randint(1, 1000)
         self.fake = Faker()
 
-    def run(self):
-        conn = psycopg2.connect(dsn=self.db_uri)
-        cursor = conn.cursor()
-        for _ in range(self.total):
-            cur.execute("""
-                INSERT INTO realtime_traffic_sensor (
-                    sensor_id, location, plate_number, latitude, longitude, traffic_flow, speed_avg
-                ) VALUES (%s, %s, %s, %s, %s, %s, %s)
-            """, (
-                self.fake.uuid4(),
-                self.fake.address(),
-                self.fake.license_plate(),
-                float(self.fake.latitude()),
-                float(self.fake.longitude()),
-                random.randint(0, 100),
-                random.uniform(0, 120)
-            ))
-        conn.commit()
-        cur.close()
-        conn.close()
-        print(f"Inserted {self.num_records} fake traffic records into the database.")
+    def insert_fake_data(self):
+        try:
+            conn = psycopg2.connect(self.db)
+            cursor = conn.cursor()
 
-if __name__ == "__main__":
-    db_uri = os.getenv('NEONDB_URI')
-    num_records = random.randint(1, 1000)  # Random number of records between 1 to 1000
-    generator = FakerDataGenerator(db_uri, num_records)
-    generator.run()
+            for _ in range(self.num_records):
+                cursor.execute("""
+                    INSERT INTO realtime_traffic_sensor (
+                        sensor_id, location, plate_number, latitude, longitude, traffic_flow, speed_avg
+                    ) VALUES (%s, %s, %s, %s, %s, %s, %s)
+                """, (
+                    self.fake.uuid4(),
+                    self.fake.address(),
+                    self.fake.license_plate(),
+                    float(self.fake.latitude()),
+                    float(self.fake.longitude()),
+                    random.randint(0, 100),
+                    random.uniform(0, 120)
+                ))
+
+            conn.commit()
+            cursor.close()
+            conn.close()
+            print(f"✅ Inserted {self.num_records} fake traffic records.")
+        
+        except Exception as e:
+            print(f"❌ Error inserting data: {e}")
+
+if __name__ == '__main__':
+    generator = TrafficDataGenerator()
+    generator.insert_fake_data()
