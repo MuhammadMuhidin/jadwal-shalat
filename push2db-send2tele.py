@@ -51,6 +51,8 @@ class JadwalShalat:
             cursor = conn.cursor()
             cursor.execute("SELECT * FROM jadwal_shalat ORDER BY tanggal ASC LIMIT 1")
             jadwal = cursor.fetchone()
+            cursor.execute("SELECT COUNT(*) FROM realtime_traffic_sensor")
+            count = cursor.fetchone()[0]
             cursor.close()
             conn.close()
 
@@ -70,6 +72,7 @@ class JadwalShalat:
 *Asmaul Husna*
 📿 "{jadwal[9]}"
 ------------------
+📊 *Jumlah Data Sensor Lalu Lintas*: {count} records
 """
                 requests.post(self.uri_telegram, json={'msg': message})
                 print("Message sent to Telegram.")

@@ -4,7 +4,7 @@ from faker import Faker
 class TrafficDataGenerator:
     def __init__(self):
         self.db = os.getenv('NEONDB_URI')
-        self.num_records = random.randint(1, 1000)
+        self.num_records = random.randint(1, 100) # Random number of records to insert
         self.fake = Faker()
 
     def insert_fake_data(self):
