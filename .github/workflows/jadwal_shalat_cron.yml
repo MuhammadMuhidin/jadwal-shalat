@@ -1,5 +1,8 @@
 name: Jadwal Shalat
 on:
+  push:
+    branches:
+      - main
   schedule:
   - cron: '00 20 * * *'
   workflow_dispatch:
