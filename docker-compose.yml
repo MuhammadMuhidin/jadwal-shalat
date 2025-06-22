@@ -1,10 +1,9 @@
 services:
-
-  datagen:
-    image: materialize/datagen
-    environment:
-      POSTGRES_HOST: ${NEONDB_URI}
-    entrypoint: >
-      datagen -s /app/schemas/ingest-traffic-data.sql -n 1000 -f postgres -w 100
-    volumes:
-          - ./ingest-traffic-data.sql:/app/schemas/ingest-traffic-data.sql
+  datagen:
+    image: materialize/datagen
+    environment:
+      POSTGRES_HOST: ${NEONDB_URI}
+    entrypoint: >
+      datagen -s /app/schemas/ingest-traffic-data.sql -n 1000 -f postgres -w 100
+    volumes:
+      - ./ingest-traffic-data.sql:/app/schemas/ingest-traffic-data.sql
