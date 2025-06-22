@@ -37,8 +37,6 @@ jobs:
     
     - name: Setup Docker Compose
       uses: docker/setup-compose-action@v1
-      with:
-        version:latest
 
     - name: Build and run Docker Compose
       run: docker compose -f docker-compose.yml up --build
