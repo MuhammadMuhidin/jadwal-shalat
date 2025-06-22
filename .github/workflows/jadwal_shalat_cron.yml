@@ -6,7 +6,7 @@ on:
 
 
 jobs:
-  run-push2db-send2tele:
+  push2db-send2tele:
     runs-on: ubuntu-latest
     
     steps:
@@ -44,7 +44,6 @@ jobs:
         NEON_USERNAME: 'muhidin_owner'
         NEON_PASSWORD: 'npg_X3en6QuhxJDi'
         NEON_DATABASE: 'muhidin'
-        POSTGRES_URL: 'postgresql://muhidin_owner:npg_X3en6QuhxJDi@ep-jolly-cake-a1cwqxx2-pooler.ap-southeast-1.aws.neon.tech/muhidin?sslmode=require'
       run: docker compose -f docker-compose.yml up --build 
 
     - name: Docker Compose Down
