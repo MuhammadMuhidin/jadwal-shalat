@@ -24,7 +24,7 @@ class TrafficDataGenerator:
                     float(self.fake.latitude()),
                     float(self.fake.longitude()),
                     random.randint(0, 100),
-                    random.randomint(0, 120)
+                    random.randint(0, 120)
                 ))
 
             conn.commit()
