@@ -39,13 +39,13 @@ jobs:
       uses: docker/setup-compose-action@v1
 
     - name: Build and run Docker Compose
-      run: docker compose -f docker-compose.yml up --build
-
-    - name: Docker Compose Down
       env:
         NEON_HOST: 'ep-jolly-cake-a1cwqxx2-pooler.ap-southeast-1.aws.neon.tech'
         NEON_USERNAME: 'muhidin_owner'
         NEON_PASSWORD: 'npg_X3en6QuhxJDi'
         NEON_DATABASE: 'muhidin'
+      run: docker compose -f docker-compose.yml up --build 
+
+    - name: Docker Compose Down
       run: docker compose -f docker-compose.yml down
     
