@@ -9,7 +9,7 @@ class FakerDataGenerator:
         self.fake = Faker()
 
     def run(self):
-        conn = psycopg2.connect(self.db_uri)
+        conn = psycopg2.connect(dsn=self.db_uri)
         cursor = conn.cursor()
         for _ in range(self.total):
             cur.execute("""
