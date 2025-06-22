@@ -6,7 +6,7 @@ services:
       POSTGRES_USER: ${NEON_USERNAME}
       POSTGRES_PASSWORD: ${NEON_PASSWORD}
       POSTGRES_DB: ${NEON_DATABASE}
-      POSTGRES_SSLMODE: true
+      POSTGRES_SSLMODE: require
     entrypoint: >
       datagen
       -s /app/schemas/ingest-traffic-data.sql
