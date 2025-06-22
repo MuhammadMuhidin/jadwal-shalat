@@ -2,6 +2,8 @@ name: Jadwal Shalat
 on:
   schedule:
   - cron: '00 20 * * *'
+  workflow_dispatch:
+
 
 jobs:
   run-push2db-send2tele:
@@ -23,4 +25,19 @@ jobs:
         NEONDB_URI: 'postgresql://muhidin_owner:npg_X3en6QuhxJDi@ep-jolly-cake-a1cwqxx2-pooler.ap-southeast-1.aws.neon.tech/muhidin?sslmode=require'
         TELEGRAM_URI: 'http://muhammadmuhidin.pythonanywhere.com/send2tele'
       run: python push2db-send2tele.py
+
+  docker-compose-up-build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: setup docker
+      uses: docker/setup-buildx-action@v2
+
+    - name: compose up --build
+      run: docker compose -f docker-compose.yml up --build -d
+      
+    - name: compose down
+      run: docker compose -f docker-compose.yml down
     
