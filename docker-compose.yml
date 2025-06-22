@@ -7,6 +7,6 @@ services:
       POSTGRES_PASSWORD: ${NEON_PASSWORD}
       POSTGRES_DB: ${NEON_DATABASE}
     entrypoint: >
-      datagen -s /app/schemas/ingest-traffic-data.sql -n 1000 -f postgres -w 100
+      datagen -s /app/schemas/ingest-traffic-data.sql -n 1000 -f postgres -w 100 --sslmode=require
     volumes:
       - ./ingest-traffic-data.sql:/app/schemas/ingest-traffic-data.sql
