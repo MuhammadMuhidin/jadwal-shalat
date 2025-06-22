@@ -72,7 +72,7 @@ class JadwalShalat:
 *Asmaul Husna*
 📿 "{jadwal[9]}"
 ------------------
-📊 *Jumlah data traffic sensor:* {count}
+📊 *Total Data Traffic Sensor:* {count}
 """
                 requests.post(self.uri_telegram, json={'msg': message})
                 print("Message sent to Telegram.")
