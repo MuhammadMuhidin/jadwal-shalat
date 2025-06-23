@@ -2,7 +2,6 @@ import os, requests
 from datetime import datetime
 
 class WeatherClient:
-    telegram_uri = ${{ TELEGRAM_URI}}
     weather_codes = {
         0: "Cerah", 1: "Cerah sebagian", 2: "Berawan", 3: "Berawan tebal",
         45: "Kabut", 48: "Kabut membeku",
