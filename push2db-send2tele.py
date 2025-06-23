@@ -83,7 +83,10 @@ class JadwalShalat:
 *Asmaul Husna*
 📿 "{jadwal[9]}"
 ------------------
-Total traffic sensor {count} records and status replication is *{status_check}*
+*Report Traffic Sensor*
+• DC {totals[0]} records
+• DR {totals[1]} records
+status replication is *{status_check}*
 """
                 requests.post(self.uri_telegram, json={'msg': message})
                 print("Message sent to Telegram.")
