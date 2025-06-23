@@ -89,7 +89,7 @@ class JadwalShalat:
 records: DC {totals[0]} | DR {totals[1]}
 status replication: {status_check}
 ------------------
-Cuaca hari ini {weather_msg}
+{weather_msg}
 """
                 requests.post(self.uri_telegram, json={'msg': message})
                 print("Message sent to Telegram.")
