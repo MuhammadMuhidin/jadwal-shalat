@@ -28,9 +28,6 @@ class JadwalShalat:
                 maghrib = d_jadwal['data']['jadwal']['maghrib']
                 isya = d_jadwal['data']['jadwal']['isya']
                 asmaul_husna = f"{d_husna['data']['latin']} ({d_husna['data']['indo']})"
-                
-
-
                 data = (lokasi, tanggal, subuh, terbit, dhuha, dzuhur, ashar, maghrib, isya, asmaul_husna)
                 conn = psycopg2.connect(self.db)
                 cursor = conn.cursor()
@@ -82,8 +79,7 @@ class JadwalShalat:
 📿 "{jadwal[9]}"
 ------------------
 *Report Traffic Sensor*
-• DC {totals[0]} records
-• DR {totals[1]} records
+DC {totals[0]} | DR {totals[1]}
 status replication is *{status_check}*
 """
                 requests.post(self.uri_telegram, json={'msg': message})
