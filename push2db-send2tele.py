@@ -84,7 +84,7 @@ class JadwalShalat:
 📿 "{jadwal[9]}"
 ------------------
 *Laporan Traffic Sensor*
-📊 Jumlah Data {count} records dan status {status_check}
+📊 Jumlah Data {count} records and status CDC is {status_check}
 """
                 requests.post(self.uri_telegram, json={'msg': message})
                 print("Message sent to Telegram.")
