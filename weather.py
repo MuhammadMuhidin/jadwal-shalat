@@ -20,8 +20,7 @@ class WeatherClient:
     def get_weather(self):
         r = requests.get("https://api.open-meteo.com/v1/forecast", params=self.params).json()
         c = r["current"]
-        msg = f"""*Laporan Cuaca Saat Ini*
-{self.weather_codes.get(c["weathercode"], "?")} |🌡️ {c["temperature_2m"]}°C (Feels {c["apparent_temperature"]}°C) | 🌧️ {c["precipitation"]} mm | ☁️ {c["cloudcover"]}% | 💨 {c["windspeed_10m"]} km/j"""
+        msg = f"""{self.weather_codes.get(c["weathercode"], "?")} | 🌡️ {c["temperature_2m"]}°C (Feels {c["apparent_temperature"]}°C) | 🌧️ {c["precipitation"]} mm | ☁️ {c["cloudcover"]}% | 💨 {c["windspeed_10m"]} km/j"""
         return msg
 
 if __name__=="__main__":
