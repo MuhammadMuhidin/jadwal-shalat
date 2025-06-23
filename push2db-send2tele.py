@@ -63,7 +63,7 @@ class JadwalShalat:
                     with psycopg2.connect(conn) as c, c.cursor() as curr:
                         curr.execute('select count(*) from realtime_traffic_sensor')
                         count.append(cur.fetchone()[0])
-                status_check='OK' if counts[0]==counts[1] else status_check='BAD'
+                status_check='OK' if counts[0]==counts[1] else 'BAD'
             except Exception as e:
                 status_check=f'Error: {e}'
 
