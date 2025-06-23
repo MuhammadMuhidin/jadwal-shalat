@@ -69,7 +69,7 @@ class JadwalShalat:
             except Exception as e:
                 weather_msg = f"⚠️ Gagal ambil data cuaca: {e}"
                         
-            if jadwal:
+            if weather_msg:
                 message = f"""🕌 *Jadwal Shalat Hari Ini*
 📅 {jadwal[0]}
 📍 Wilayah {jadwal[1]}
@@ -85,8 +85,7 @@ class JadwalShalat:
 *Asmaul Husna*
 📿 "{jadwal[9]}"
 ------------------
-*cuaca hari ini*
-{weather_msg}
+cuaca hari ini {weather_msg}
 ------------------
 *Report Traffic Sensor*
 records: DC {totals[0]} | DR {totals[1]}
