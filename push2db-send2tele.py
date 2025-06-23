@@ -1,5 +1,6 @@
 import os, psycopg2, requests, pytz
 from datetime import datetime
+from weather import WeatherClient
 
 class JadwalShalat:
     def __init__(self):
@@ -62,6 +63,12 @@ class JadwalShalat:
             except Exception as e:
                 status_check=f'Error: {e}'
 
+            try:
+            cuaca = WeatherClient()
+            weather_msg = cuaca.get_weather()
+                except Exception as e:
+                    weather_msg = f"⚠️ Gagal ambil data cuaca: {e}"
+
             if jadwal:
                 message = f"""🕌 *Jadwal Shalat Hari Ini*
 📅 {jadwal[0]}
@@ -77,6 +84,9 @@ class JadwalShalat:
 ------------------
 *Asmaul Husna*
 📿 "{jadwal[9]}"
+------------------
+*cuaca hari ini*
+{weather_msg}
 ------------------
 *Report Traffic Sensor*
 records: DC {totals[0]} | DR {totals[1]}
