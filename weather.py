@@ -20,17 +20,8 @@ class WeatherClient:
     def get_weather(self):
         r = requests.get("https://api.open-meteo.com/v1/forecast", params=self.params).json()
         c = r["current"]
-
-        dt = datetime.fromisoformat(c["time"])
-        tanggal = dt.strftime("%d/%m/%Y")
-        jam = dt.strftime("%H:%M")
-
-        msg = f"""🌤️ Bogor
-📅 {tanggal}
-⏰ {jam}
-cuaca {self.weather_codes.get(c["weathercode"], "?")}
-🌡️ {c["temperature_2m"]}°C (Feels {c["apparent_temperature"]}°C)
-🌧️ {c["precipitation"]} mm | ☁️ {c["cloudcover"]}% | 💨 {c["windspeed_10m"]} km/j"""
+        msg = f"""Laporan Cuaca Saat Ini*
+{self.weather_codes.get(c["weathercode"], "?")} |🌡️ {c["temperature_2m"]}°C (Feels {c["apparent_temperature"]}°C) | 🌧️ {c["precipitation"]} mm | ☁️ {c["cloudcover"]}% | 💨 {c["windspeed_10m"]} km/j"""
         return msg
 
 if __name__=="__main__":
