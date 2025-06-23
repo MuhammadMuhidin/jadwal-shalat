@@ -4,7 +4,7 @@ on:
     branches:
       - main
   schedule:
-  - cron: '00 20 * * *'
+  - cron: '0 * * * *'
   workflow_dispatch:
 
 
@@ -24,11 +24,18 @@ jobs:
     - name: Install dependencies
       run: pip install psycopg2-binary==2.9.10 pytz==2025.2 requests==2.32.4 Faker==37.4.0
 
-    - name: Run both scripts
+    - name: Run both scripts if 20:00 UTC else run weather.py
       env:
         NEONDB_URI: ${{ secrets.NEONDB_URI }}
         NEONDB_URI_DR: ${{ secrets.NEONDB_URI_DR }}
         TELEGRAM_URI: ${{ secrets.TELEGRAM_URI }}
       run: |
-        python push2db-traffic.py
-        python push2db-send2tele.py
+        current_hour=$(date -u +"%H")
+        if [ "$current_hour" -eq 20 ]; then
+            echo "running all scripts"
+            python push2db-traffic.py
+            python push2db-send2tele.py
+        else
+            echo "running weather only"
+            python weather.py
+        fi
