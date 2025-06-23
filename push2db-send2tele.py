@@ -58,7 +58,7 @@ class JadwalShalat:
                     with psycopg2.connect(conn) as c, c.cursor() as curr:
                         curr.execute('select count(*) from realtime_traffic_sensor')
                         totals.append(curr.fetchone()[0])
-                status_check='OK' if totals[0]==totals[1] else 'BAD'
+                status_check='OK ✅' if totals[0]==totals[1] else 'BAD ‼️'
             except Exception as e:
                 status_check=f'Error: {e}'
 
@@ -80,7 +80,7 @@ class JadwalShalat:
 ------------------
 *Report Traffic Sensor*
 records: DC {totals[0]} | DR {totals[1]}
-status replication is *{status_check}*
+status replication: {status_check}
 """
                 requests.post(self.uri_telegram, json={'msg': message})
                 print("Message sent to Telegram.")
