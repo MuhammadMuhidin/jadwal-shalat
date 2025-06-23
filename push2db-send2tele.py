@@ -52,8 +52,6 @@ class JadwalShalat:
             cursor = conn.cursor()
             cursor.execute("SELECT * FROM jadwal_shalat ORDER BY TO_DATE(SPLIT_PART(tanggal,',',2),'DD/MM/YYYY') DESC LIMIT 1")
             jadwal = cursor.fetchone()
-            cursor.execute("SELECT COUNT(*) FROM realtime_traffic_sensor")
-            count = cursor.fetchone()[0]
             cursor.close()
             conn.close()
 
