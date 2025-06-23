@@ -27,6 +27,7 @@ jobs:
     - name: Run both scripts
       env:
         NEONDB_URI: ${{ secrets.NEONDB_URI }}
+        NEONDB_URI_DR: ${{ secrets.NEONDB_URI_DR }}
         TELEGRAM_URI: ${{ secrets.TELEGRAM_URI }}
       run: |
         python push2db-traffic.py
