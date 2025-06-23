@@ -60,9 +60,9 @@ class JadwalShalat:
             try:
                 counts=[]
                 for conn in [self.db, self.db_dr]:
-                with psycopg2.connect(conn) as c, c.cursor() as curr:
-                    curr.execute('select count(*) from realtime_traffic_sensor')
-                    count.append(cur.fetchone()[0])
+                    with psycopg2.connect(conn) as c, c.cursor() as curr:
+                        curr.execute('select count(*) from realtime_traffic_sensor')
+                        count.append(cur.fetchone()[0])
                 status_check='OK' if counts[0]==counts[1] else status_check='BAD'
             except Exception as e:
                 status_check=f'Error: {e}'
