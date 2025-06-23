@@ -79,7 +79,7 @@ class JadwalShalat:
 📿 "{jadwal[9]}"
 ------------------
 *Report Traffic Sensor*
-DC {totals[0]} | DR {totals[1]}
+records: DC {totals[0]} | DR {totals[1]}
 status replication is *{status_check}*
 """
                 requests.post(self.uri_telegram, json={'msg': message})
