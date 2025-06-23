@@ -85,7 +85,7 @@ class JadwalShalat:
 *Asmaul Husna*
 📿 "{jadwal[9]}"
 ------------------
-cuaca hari ini {weather_msg}
+Cuaca hari ini {weather_msg}
 ------------------
 *Report Traffic Sensor*
 records: DC {totals[0]} | DR {totals[1]}
