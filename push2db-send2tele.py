@@ -64,11 +64,11 @@ class JadwalShalat:
                 status_check=f'Error: {e}'
 
             try:
-            cuaca = WeatherClient()
-            weather_msg = cuaca.get_weather()
-                except Exception as e:
-                    weather_msg = f"⚠️ Gagal ambil data cuaca: {e}"
-
+                cuaca = WeatherClient()
+                weather_msg = cuaca.get_weather()
+                    except Exception as e:
+                        weather_msg = f"⚠️ Gagal ambil data cuaca: {e}"
+                        
             if jadwal:
                 message = f"""🕌 *Jadwal Shalat Hari Ini*
 📅 {jadwal[0]}
