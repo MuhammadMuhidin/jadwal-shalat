@@ -4,6 +4,7 @@ from datetime import datetime
 class JadwalShalat:
     def __init__(self):
         self.db = os.getenv('NEONDB_URI')
+        self.db_dr = os.getenv('NEONDB_URI_DR')
         self.uri_telegram = os.getenv('TELEGRAM_URI')
     
     def fetch_and_store(self):
@@ -49,12 +50,22 @@ class JadwalShalat:
         try:
             conn = psycopg2.connect(self.db)
             cursor = conn.cursor()
-            cursor.execute("SELECT * FROM jadwal_shalat ORDER BY TO_DATE(SPLIT_PART(tanggal,',',2),'DD/MM/YYY') DESC LIMIT 1")
+            cursor.execute("SELECT * FROM jadwal_shalat ORDER BY TO_DATE(SPLIT_PART(tanggal,',',2),'DD/MM/YYYY') DESC LIMIT 1")
             jadwal = cursor.fetchone()
             cursor.execute("SELECT COUNT(*) FROM realtime_traffic_sensor")
             count = cursor.fetchone()[0]
             cursor.close()
             conn.close()
+
+            try:
+                counts=[]
+                for conn in [self.db, self.db_dr]:
+                with psycopg2.connect(conn) as c, c.cursor() as curr:
+                    curr.execute('select count(*) from realtime_traffic_sensor')
+                    count.append(cur.fetchone()[0])
+                status_check='OK' if counts[0]==counts[1] else status_check='BAD'
+            except Exception as e:
+                status_check=f'Error: {e}'
 
             if jadwal:
                 message = f"""🕌 *Jadwal Shalat Hari Ini*
@@ -73,7 +84,7 @@ class JadwalShalat:
 📿 "{jadwal[9]}"
 ------------------
 *Laporan Traffic Sensor*
-📊 Jumlah Data {count} records
+📊 Jumlah Data {count} records dan status {status_check}
 """
                 requests.post(self.uri_telegram, json={'msg': message})
                 print("Message sent to Telegram.")
