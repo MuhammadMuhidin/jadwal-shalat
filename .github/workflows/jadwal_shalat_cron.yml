@@ -36,6 +36,7 @@ jobs:
             python push2db-traffic.py
             python push2db-send2tele.py
         else
-            echo "running weather only"
-            python weather.py
+            #echo "running weather only"
+            #python weather.py
+            echo "do nothing"
         fi
